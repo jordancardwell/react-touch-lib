@@ -88,9 +88,7 @@ var LeftNavContainer = React.createClass({
     // button
     // sideContent
     // children (big content area)
-    var sidebarX = (this.props.sideWidth - this.state.scrollLeft);
-
-    var side = null;
+    // forceRenderNav
 
     // TODO: we could do this with style calc
     var sideStyle = {
@@ -103,8 +101,8 @@ var LeftNavContainer = React.createClass({
 
     var behavior = this.props.behavior;
 
-    if (this.isNavOpen()) {
-      side = (
+    if (this.isNavOpen() || this.props.forceRenderNav) {
+      var side = (
         <AnimatableContainer
           style={sideStyle}
           translate={behavior.side.translate(this.props.sideWidth, this.state.scrollLeft)}
