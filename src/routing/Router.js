@@ -15,7 +15,6 @@ function getComponentForRoute(route) {
         routeName: routes[regexSource],
         routeParams: result
       });
-      break;
     }
   }
 

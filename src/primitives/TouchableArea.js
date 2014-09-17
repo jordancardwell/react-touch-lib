@@ -8,6 +8,7 @@ var TouchableArea = React.createClass({
       cumulativeScroll: {x:0, y:0},
       gestureStart: {x:0, y:0},
       isMouseWheeling: false,
+      inertiaDeltaDirection: 0
     };
   },
 
@@ -30,6 +31,20 @@ var TouchableArea = React.createClass({
     var self = this;
     var timeStamp = e.timeStamp || this.state.lastTimeStamp;
     var scrollDeltaX, scrollDeltaY;
+
+    if (this.state.isMouseIntertia) {
+      var inertiaDirection = e.deltaY > 0 ? 1 : -1;
+
+      // End scrolling state
+      if (this.state._scrollWheelEndDebouncer) {
+        clearTimeout(this.state._scrollWheelEndDebouncer);
+      }
+      this.state._scrollWheelEndDebouncer = setTimeout(function () {
+        self.state.isMouseInertia = false;
+        self.state.inertiaDeltaDirection = 0;
+      }, 32);
+    }
+
     if (!this.state.isMouseWheeling) {
       this.state.isMouseWheeling = true;
       this.state.cumulativeScroll.x = 0;
@@ -61,18 +76,20 @@ var TouchableArea = React.createClass({
     var pageY = this.state.gestureStart.y + this.state.cumulativeScroll.y;
 
     this.props.scroller.doTouchMove([{pageX: pageX, pageY: pageY}], timeStamp);
+    this.state.inertiaDeltaDirection = e.deltaY > 0 ? 1 : -1;
 
-    //_updateScroll(_gestureStart.x + _cumulativeScroll.x, _gestureStart.y + _cumulativeScroll.y, event.timeStamp, event);
-
-    // End scrolling state
-    if (this.state._scrollWheelEndDebouncer) {
-      clearTimeout(this.state._scrollWheelEndDebouncer);
-    }
-    this.state._scrollWheelEndDebouncer = setTimeout(function () {
+    var maxOffset = this.props.scroller.__clientHeight / 20;
+    // max top offset
+    if (this.props.scroller.__scrollTop < -maxOffset ||
+        // max bottom offset
+        this.props.scroller.__scrollTop + this.props.scroller.__clientHeight > this.props.scroller.__contentHeight + maxOffset
+       ) {
+      // stop acting on these events
       self.props.scroller.doTouchEnd(timeStamp);
-      //_releaseInputCapture();
+      self.state.isMouseIntertia = true;
       self.state.isMouseWheeling = false;
-    }, 300);
+    }
+
   },
 
   handleMouseStart: function(e) {
@@ -80,12 +97,16 @@ var TouchableArea = React.createClass({
       return;
     }
 
+    // ignore middle and right clicks
+    if (e.button !== 0) return;
+
     // TODO: what’s the best way to handle this with React?
     // The problem is if your mouse gets away from the target element it will
     // no longer receive the mousemove or mouseup events so we need to capture
     // these events at the document level.
     document.body.addEventListener('mousemove', this.handleMouseMove, false);
     document.body.addEventListener('mouseup', this.handleMouseEnd, false);
+    document.body.addEventListener('mouseleave', this.handleMouseEnd, false);
 
     this.props.scroller.doTouchStart([e], e.timeStamp);
     e.preventDefault();
@@ -107,6 +128,7 @@ var TouchableArea = React.createClass({
 
     document.body.removeEventListener('mousemove', this.handleMouseMove);
     document.body.removeEventListener('mouseup', this.handleMouseEnd);
+    document.body.removeEventListener('mouseleave', this.handleMouseEnd);
 
     this.props.scroller.doTouchEnd(e.timeStamp);
     e.preventDefault();
