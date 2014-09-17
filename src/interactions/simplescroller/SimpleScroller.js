@@ -20,7 +20,12 @@ var SimpleScroller = React.createClass({
   },
 
   componentWillMount: function() {
-    this.scroller = new Scroller(this.handleScroll, this.props.options);
+    var self = this;
+    this.scroller = new Scroller(function(left, top) {
+      self.handleScroll(left, top);
+      if (typeof self.props.onScroll === 'function')
+        self.props.onScroll(left, top);
+    }, this.props.options);
     this.configured = false;
   },
 
@@ -56,7 +61,9 @@ var SimpleScroller = React.createClass({
 
   render: function() {
     return this.transferPropsTo(
-      <TouchableArea scroller={this.scroller} style={{overflow: 'hidden'}}>
+      <TouchableArea
+        scroller={this.scroller}
+        style={{overflow: 'hidden', height: '100%'}}>
         <AnimatableContainer
           translate={{x: -1 * this.state.left, y: -1 * this.state.top}}
           style={ANIMATABLE_CONTAINER_STYLE}>
