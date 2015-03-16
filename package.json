@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jsxc": "~0.1.4"
+    "jsxc": "~0.1.6"
   },
   "repository": {
     "type": "git",
