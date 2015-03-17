@@ -40,7 +40,7 @@ function renderRouteOnClient() {
   // );
 
   React.render(
-    React.createElement(getComponentForRoute(getCurrentRouteOnClient()),
+    React.createElement(getComponentForRoute(getCurrentRouteOnClient())),
     domNode
   );
 }
