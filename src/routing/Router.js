@@ -34,8 +34,13 @@ function getCurrentRouteOnClient() {
 }
 
 function renderRouteOnClient() {
-  React.renderComponent(
-    getComponentForRoute(getCurrentRouteOnClient()),
+  // React.renderComponent(
+  //   getComponentForRoute(getCurrentRouteOnClient()),
+  //   domNode
+  // );
+
+  React.render(
+    React.createElement(getComponentForRoute(getCurrentRouteOnClient()),
     domNode
   );
 }
@@ -90,8 +95,8 @@ var Router = {
   },
 
   getMarkupForRoute: function(route, cb) {
-    React.renderComponentToString(
-      getComponentForRoute(route),
+    React.renderToString(
+      React.createElement(getComponentForRoute(route)),
       cb
     );
   }
