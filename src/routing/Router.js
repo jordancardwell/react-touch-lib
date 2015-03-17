@@ -96,7 +96,7 @@ var Router = {
 
   getMarkupForRoute: function(route, cb) {
     React.renderToString(
-      React.createElement(getComponentForRoute(route)),
+      getComponentForRoute(route),
       cb
     );
   }
