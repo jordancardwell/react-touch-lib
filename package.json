@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "jsxc": "git://github.com/jordancardwell/jsxc#d60173651a69f75ebad721aab0c1c963a63f6149"
+    "jsxc": "git://github.com/jordancardwell/jsxc#558f67478559bdd41a10151266b54ad60a44baec"
   },
   "repository": {
     "type": "git",
