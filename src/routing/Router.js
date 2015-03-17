@@ -34,7 +34,7 @@ function getCurrentRouteOnClient() {
 }
 
 function renderRouteOnClient() {
-  React.renderComponent(
+  React.render(
     getComponentForRoute(getCurrentRouteOnClient()),
     domNode
   );
@@ -90,7 +90,7 @@ var Router = {
   },
 
   getMarkupForRoute: function(route, cb) {
-    React.renderComponentToString(
+    React.renderToString(
       getComponentForRoute(route),
       cb
     );
