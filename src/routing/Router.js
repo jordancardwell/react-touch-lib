@@ -11,10 +11,12 @@ function getComponentForRoute(route) {
     var result = regex.exec(route);
 
     if (result) {
-      return componentClass({
-        routeName: routes[regexSource],
-        routeParams: result
-      });
+      return React.createElement(componentClass,
+        {
+          routeName: routes[regexSource],
+          routeParams: result
+        }
+      );
     }
   }
 

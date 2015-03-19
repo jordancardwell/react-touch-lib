@@ -162,8 +162,9 @@ var TouchableArea = React.createClass({
 
   render: function() {
     var component = this.props.component;
-    return this.transferPropsTo(
+    return (
       <component
+        {...this.props}
         onWheel={this.handleWheel}
         onMouseDown={this.handleMouseStart}
         onTouchStart={this.handleTouchStart}

@@ -16,8 +16,8 @@ var App = React.createClass({
   },
 
   render: function() {
-    return this.transferPropsTo(
-      <div onTouchMove={this.handleTouch} style={STYLE}>
+    return (
+      <div {...this.props} onTouchMove={this.handleTouch} style={STYLE}>
         {this.props.children}
       </div>
     );
