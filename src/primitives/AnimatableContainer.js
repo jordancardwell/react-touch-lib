@@ -10,8 +10,8 @@ var AnimatableContainer = React.createClass({
   getDefaultProps: function() {
     return {
       blockUpdates: true,
-      component: React.DOM.div,
-      contentComponent: React.DOM.span,
+      component: 'div',
+      contentComponent: 'span',
       opacity: 1,
       rotate: null,
       scale: null,

@@ -13,7 +13,7 @@ var TouchableArea = React.createClass({
 
   getDefaultProps: function() {
     return {
-      component: React.DOM.div,
+      component: 'div',
       touchable: true
     };
   },
