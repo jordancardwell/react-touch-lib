@@ -113,19 +113,19 @@ var AnimatableContainer = React.createClass({
   },
 
   render: function() {
-    var component = this.props.component;
-    var contentComponent = this.props.contentComponent;
+    var Component = React.createElement(this.props.component);
+    var ContentComponent = React.createElement(this.props.contentComponent);
 
     return (
-      <component
+      <Component
         className={this.props.className}
         style={this.getStyle(this.props)}>
         <StaticContainer shouldUpdate={!this.props.blockUpdates || !this.isAnimating}>
-          <contentComponent>
+          <ContentComponent>
             {this.props.children}
-          </contentComponent>
+          </ContentComponent>
         </StaticContainer>
-      </component>
+      </Component>
     );
   }
 });

@@ -161,9 +161,9 @@ var TouchableArea = React.createClass({
   },
 
   render: function() {
-    var component = this.props.component;
+    var Component = this.props.component;
     return (
-      <component
+      <Component
         {...this.props}
         onWheel={this.handleWheel}
         onMouseDown={this.handleMouseStart}
@@ -172,7 +172,7 @@ var TouchableArea = React.createClass({
         onTouchEnd={this.handleTouchEnd}
         onTouchCancel={this.handleTouchEnd}>
         {this.props.children}
-      </component>
+      </Component>
     );
   }
 });
