@@ -113,8 +113,8 @@ var AnimatableContainer = React.createClass({
   },
 
   render: function() {
-    var Component = React.createElement(this.props.component);
-    var ContentComponent = React.createElement(this.props.contentComponent);
+    var Component = this.props.component;
+    var ContentComponent = this.props.contentComponent;
 
     return (
       <Component
