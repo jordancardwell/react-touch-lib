@@ -11,10 +11,12 @@ function getComponentForRoute(route) {
     var result = regex.exec(route);
 
     if (result) {
-      return componentClass({
-        routeName: routes[regexSource],
-        routeParams: result
-      });
+      return React.createElement(componentClass,
+        {
+          routeName: routes[regexSource],
+          routeParams: result
+        }
+      );
     }
   }
 
@@ -34,7 +36,7 @@ function getCurrentRouteOnClient() {
 }
 
 function renderRouteOnClient() {
-  React.renderComponent(
+  React.render(
     getComponentForRoute(getCurrentRouteOnClient()),
     domNode
   );
@@ -90,7 +92,7 @@ var Router = {
   },
 
   getMarkupForRoute: function(route, cb) {
-    React.renderComponentToString(
+    React.renderToString(
       getComponentForRoute(route),
       cb
     );

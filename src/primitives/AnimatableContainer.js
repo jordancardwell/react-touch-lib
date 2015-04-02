@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 var React = require('react');
 
@@ -11,8 +10,8 @@ var AnimatableContainer = React.createClass({
   getDefaultProps: function() {
     return {
       blockUpdates: true,
-      component: React.DOM.div,
-      contentComponent: React.DOM.span,
+      component: 'div',
+      contentComponent: 'span',
       opacity: 1,
       rotate: null,
       scale: null,
@@ -114,19 +113,19 @@ var AnimatableContainer = React.createClass({
   },
 
   render: function() {
-    var component = this.props.component;
-    var contentComponent = this.props.contentComponent;
+    var Component = this.props.component;
+    var ContentComponent = this.props.contentComponent;
 
     return (
-      <component
+      <Component
         className={this.props.className}
         style={this.getStyle(this.props)}>
         <StaticContainer shouldUpdate={!this.props.blockUpdates || !this.isAnimating}>
-          <contentComponent>
+          <ContentComponent>
             {this.props.children}
-          </contentComponent>
+          </ContentComponent>
         </StaticContainer>
-      </component>
+      </Component>
     );
   }
 });

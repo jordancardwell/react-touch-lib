@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 var React = require('react');
 
@@ -60,8 +59,9 @@ var SimpleScroller = React.createClass({
   },
 
   render: function() {
-    return this.transferPropsTo(
+    return (
       <TouchableArea
+        {...this.props}
         scroller={this.scroller}
         style={{overflow: 'hidden', height: '100%'}}>
         <AnimatableContainer

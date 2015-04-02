@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 var React = require('react');
 
@@ -35,8 +34,8 @@ var FrostedGlassViewport = React.createClass({
       top: 0
     };
 
-    return this.transferPropsTo(
-      <TouchableArea style={style}>
+    return (
+      <TouchableArea {...this.props} style={style}>
         <div style={glassStyle}>
           {this.props.glassContent}
         </div>

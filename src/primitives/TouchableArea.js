@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 var React = require('react');
 
@@ -14,7 +13,7 @@ var TouchableArea = React.createClass({
 
   getDefaultProps: function() {
     return {
-      component: React.DOM.div,
+      component: 'div',
       touchable: true
     };
   },
@@ -162,9 +161,10 @@ var TouchableArea = React.createClass({
   },
 
   render: function() {
-    var component = this.props.component;
-    return this.transferPropsTo(
-      <component
+    var Component = this.props.component;
+    return (
+      <Component
+        {...this.props}
         onWheel={this.handleWheel}
         onMouseDown={this.handleMouseStart}
         onTouchStart={this.handleTouchStart}
@@ -172,7 +172,7 @@ var TouchableArea = React.createClass({
         onTouchEnd={this.handleTouchEnd}
         onTouchCancel={this.handleTouchEnd}>
         {this.props.children}
-      </component>
+      </Component>
     );
   }
 });
