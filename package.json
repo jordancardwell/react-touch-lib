@@ -18,7 +18,6 @@
     "start": "jsxc --watch src/ lib/",
     "build": "jsxc src/ lib/"
   },
-  "files": ["lib/"],
   "author": "Pete Hunt",
   "license": "Apache 2"
 }
