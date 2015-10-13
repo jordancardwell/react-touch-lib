@@ -4,8 +4,8 @@
   "description": "React component library for building inertial touch applications.",
   "main": "src/ReactTouch.js",
   "peerDependencies": {
-    "react": ">0.14.0",
-    "react-dom": ">0.14.0"
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0"
   },
   "dependencies": {},
   "devDependencies": {
