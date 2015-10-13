@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
+var ReactDOMServer = require('react-dom/server');
 
 var componentClass = null;
 var domNode = null;
@@ -36,7 +38,7 @@ function getCurrentRouteOnClient() {
 }
 
 function renderRouteOnClient() {
-  React.render(
+  ReactDOM.render(
     getComponentForRoute(getCurrentRouteOnClient()),
     domNode
   );
@@ -92,7 +94,7 @@ var Router = {
   },
 
   getMarkupForRoute: function(route, cb) {
-    React.renderToString(
+    ReactDOMServer.renderToString(
       getComponentForRoute(route),
       cb
     );
