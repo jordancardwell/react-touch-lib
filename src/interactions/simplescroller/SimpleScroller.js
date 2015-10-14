@@ -1,5 +1,6 @@
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var AnimatableContainer = require('../../primitives/AnimatableContainer');
 var TouchableArea = require('../../primitives/TouchableArea');
@@ -41,10 +42,11 @@ var SimpleScroller = React.createClass({
       return;
     }
     this.configured = true;
-    var node = this.refs.content.getDOMNode();
+    var node = this.refs.content;
+    var thisDOMNode = ReactDOM.findDOMNode(this);
     this.scroller.setDimensions(
-      this.getDOMNode().clientWidth,
-      this.getDOMNode().clientHeight,
+      thisDOMNode.clientWidth,
+      thisDOMNode.clientHeight,
       node.clientWidth,
       node.clientHeight
     );
