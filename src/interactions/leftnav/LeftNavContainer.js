@@ -1,5 +1,6 @@
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var AnimatableContainer = require('../../primitives/AnimatableContainer');
 var LeftNavBehaviors = require('./LeftNavBehaviors');
@@ -21,7 +22,7 @@ var LeftNavContainer = React.createClass({
   },
 
   _measure: function() {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode(this);
     this.scroller.setDimensions(
       node.clientWidth,
       node.clientHeight,
