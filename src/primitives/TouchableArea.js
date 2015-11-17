@@ -108,7 +108,7 @@ var TouchableArea = React.createClass({
     document.body.addEventListener('mouseleave', this.handleMouseEnd, false);
 
     this.props.scroller.doTouchStart([e], e.timeStamp);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   handleMouseMove: function(e) {
@@ -139,7 +139,7 @@ var TouchableArea = React.createClass({
     }
 
     this.props.scroller.doTouchStart(e.touches, e.timeStamp);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   handleTouchMove: function(e) {
