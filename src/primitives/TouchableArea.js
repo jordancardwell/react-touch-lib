@@ -117,7 +117,7 @@ var TouchableArea = React.createClass({
     }
 
     this.props.scroller.doTouchMove([e], e.timeStamp);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   handleMouseEnd: function(e) {
@@ -130,7 +130,7 @@ var TouchableArea = React.createClass({
     document.body.removeEventListener('mouseleave', this.handleMouseEnd);
 
     this.props.scroller.doTouchEnd(e.timeStamp);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   handleTouchStart: function(e) {
@@ -148,7 +148,7 @@ var TouchableArea = React.createClass({
     }
 
     this.props.scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   handleTouchEnd: function(e) {
@@ -157,7 +157,7 @@ var TouchableArea = React.createClass({
     }
 
     this.props.scroller.doTouchEnd(e.timeStamp);
-    e.preventDefault();
+    e.target.nodeName !== 'INPUT' && e.preventDefault();
   },
 
   render: function() {
