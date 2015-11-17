@@ -9,7 +9,7 @@ var POLL_FACTOR = .5;
 var AnimatableContainer = React.createClass({
   getDefaultProps: function() {
     return {
-      blockUpdates: true,
+      blockUpdates: false,
       component: 'div',
       contentComponent: 'span',
       opacity: 1,
