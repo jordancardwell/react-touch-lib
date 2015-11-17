@@ -11,7 +11,8 @@ var ANIMATABLE_CONTAINER_STYLE = {
   left: 0,
   position: 'absolute',
   right: 0,
-  top: 0
+  top: 0,
+  overflowY: 'scroll'
 };
 
 var SimpleScroller = React.createClass({
