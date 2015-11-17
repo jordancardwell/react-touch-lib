@@ -92,6 +92,7 @@ var TouchableArea = React.createClass({
   },
 
   handleMouseStart: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
@@ -108,19 +109,21 @@ var TouchableArea = React.createClass({
     document.body.addEventListener('mouseleave', this.handleMouseEnd, false);
 
     this.props.scroller.doTouchStart([e], e.timeStamp);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   handleMouseMove: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
 
     this.props.scroller.doTouchMove([e], e.timeStamp);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   handleMouseEnd: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
@@ -130,34 +133,37 @@ var TouchableArea = React.createClass({
     document.body.removeEventListener('mouseleave', this.handleMouseEnd);
 
     this.props.scroller.doTouchEnd(e.timeStamp);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   handleTouchStart: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
 
     this.props.scroller.doTouchStart(e.touches, e.timeStamp);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   handleTouchMove: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
 
     this.props.scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   handleTouchEnd: function(e) {
+    if (e.target.nodeName === 'INPUT') return;
     if (!this.props.scroller || !this.props.touchable) {
       return;
     }
 
     this.props.scroller.doTouchEnd(e.timeStamp);
-    e.target.nodeName !== 'INPUT' && e.preventDefault();
+    e.preventDefault();
   },
 
   render: function() {
