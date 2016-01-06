@@ -5,7 +5,8 @@
   "main": "src/ReactTouch.js",
   "peerDependencies": {
     "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react-dom": ">=0.14.0",
+    "fbjs": "^0.6.0"
   },
   "dependencies": {},
   "devDependencies": {
